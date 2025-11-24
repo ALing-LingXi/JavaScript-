@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*     sort()
+        对数组进行排序（会改变原数组）
+        默认将数组升序排列
+        注意：默认按照 Unicode 编码排序，直接对数字排序可能得到不正确结果
+        参数：可传递回调函数指定排序规则
+          (a, b) => a - b 升序排列
+          (a, b) => b - a 降序排列
+     */
+
+    let arr = ['b', 'a', 'f', 'k', 'e']
+    arr.sort()
+    console.log(arr);
+    let arr1 = [1, 4, 7, 8, 3, 4, 22, 5]
+    // 因为是用Unicode编码排序，排数字可能出问题，所以我们需要回调函数指定排序规则
+    arr1.sort((a, b) => a - b)//升序
+    console.log([...arr1]);
+    arr1.sort((a, b) => b - a)//降序
+    console.log([...arr1]);
+    console.log('-------------------');
+
+    /*     forEach()
+        遍历数组
+        需要回调函数作为参数，数组中有几个元素，回调函数就会调用几次
+        每次调用都会将数组数据作为参数传递
+        回调函数有三个参数：
+            element 当前元素
+            index 当前元素的索引
+            array 被遍历的数组 */
+
+    let arr2 = ['悟空', '八戒', '沙僧', '唐僧']
+    arr2.forEach((ele, index, array) => { console.log(ele, index, array); })
+    console.log('-------------------');
+
+    /*     filter()
+        将数组中符合条件的元素保存到新数组中返回
+        需要回调函数作为参数，为每个元素调用回调函数，根据返回值决定是否添加到新数组
+        非破坏性方法，不影响原数组 */
+
+    let arr3 = [1,2,3,4,5,6,7,8,9,10]
+    const result1 = arr3.filter((ele)=>{return ele%2===0})
+    console.log(result1);
+    console.log(arr3);
+    console.log('-----------------------');
+    
+
+    /*     map()
+        根据当前数组生成一个新数组
+        需要回调函数作为参数，回调函数的返回值会成为新数组中的元素
+        非破坏性方法，不影响原数组 */
+    let arr4 = ['悟空', '八戒', '沙僧', '唐僧']
+    const result2 = arr4.map(ele=>'<li>'+ele+'</li>')
+    console.log(result2);
+    console.log(arr4);
+    
+    /*     reduce()非破坏性
+        将数组中所有元素整合为一个值
+        参数：
+        回调函数，指定合并规则
+        可选参数，初始值 */
+    let arr5 = [1,2,3,4,5,6,7,8,9]
+    const result3 = arr5.reduce((a,b)=>a+b)
+    const result4 = arr5.reduce((a,b)=>a*b,2)
+    console.log(arr5);
+    console.log(result3);
+    console.log(result4);
+    arr5.reduce((a,b)=>{console.log(a,b);return a+b},2)
+
+
+  </script>
+</body>
+
+</html>
