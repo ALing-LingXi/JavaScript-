@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button {
+      background-color: skyblue;
+      width: 100px;
+      height: 50px;
+      border: 2px solid black;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">点我抽奖</button>
+  <script>
+    function rand(M,N) {
+      return Math.floor(Math.random()*(N-M+1)+M)
+    }
+    const btn = document.querySelector("#btn")
+    btn.addEventListener('click', () => {
+      let n = rand(0, 100)
+      const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if(n<=50){
+            resolve(n)
+            console.log(p);
+            
+          }
+          else{
+            reject(n)
+            console.log(p);
+          }
+        }, 1000)
+      })
+      p.then((result)=>{alert("你成功了"+result)
+        console.log(n);
+        
+      },(reason)=>{alert("抱歉下次再来"+reason)
+        console.log(n);
+      })
+    })
+  </script>
+</body>
+
+</html>
