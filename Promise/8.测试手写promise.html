@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./7手写promise.js"></script>
+  <!-- <script src="./7手写promise.js"></script> -->
   <title>Document</title>
 </head>
 <body>
@@ -13,15 +13,20 @@
     resolve("哈啊哈h")
    }, 1000);
    })
-   p.then(
-    result=>{console.log(result);},
-    reason=>{
-      console.log(reason);
-   })
-   p.then(result=>{
-    alert(result)
+  //  p.then(
+  //   result=>{console.log(result);},
+  //   reason=>{
+  //     console.log(reason);
+  //  })
+   const t = p.then(result=>{
+    // resolve("hahahaha")
+    return "hahahhhhh"
+   }).then(result=>{
+    console.log(result);
    })
    console.log(p);
+   console.log(t);
+   
    
   </script>
   
