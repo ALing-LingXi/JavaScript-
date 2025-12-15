@@ -34,7 +34,9 @@ function Promise(executor){
   }
 }
 Promise.prototype.then = function(onResolve,onReject){
-  if(this.PromiseState==="fulfilled"){
+ return new Promise((resolve,reject)=>{
+  
+   if(this.PromiseState==="fulfilled"){
     onResolve(this.PromiseResult)
   }
   if(this.PromiseState==="rejected"){
@@ -45,5 +47,6 @@ Promise.prototype.then = function(onResolve,onReject){
       onResolve,onReject
     })
   }
+ })
 }
 //第二版箭头函数
