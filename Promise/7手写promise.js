@@ -1,3 +1,4 @@
+
 function Promise(executor) {
   this.PromiseState = "pending"
   this.PromiseResult = null
@@ -32,6 +33,14 @@ function Promise(executor) {
 }
 Promise.prototype.then = function (onResolve, onReject) {
   const self = this
+  if(typeof onResolve !== "function"){
+    onResolve = result=>result
+  }
+  if(typeof onReject !== "function"){
+    onReject= (reason)=>{
+      throw reason
+    }
+  }
   return new Promise((resolve, reject) => {
     function callFunction(type) {
       {
@@ -71,4 +80,20 @@ Promise.prototype.then = function (onResolve, onReject) {
     }
   })
 }
+Promise.resolve=function(data){
+  return new Promise((resolve,reject)=>{
+    if(data instanceof Promise){
+      data.then(v=>{
+        resolve(v)
+      },r=>{
+        reject(r)
+      }
+    )
+    }
+    else{
+      resolve(data)
+    }
+  })
+}
+
 //第二版箭头函数
