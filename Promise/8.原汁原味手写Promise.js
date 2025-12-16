@@ -108,3 +108,4 @@ Promise.prototype.then = function (onResolve, onReject) {
   })
 }
 //第二版箭头函数
+//
