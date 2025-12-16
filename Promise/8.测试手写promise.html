@@ -19,10 +19,10 @@
 // })
 // console.log(t);
 // console.log(p);
-const d = Promise.resolve("ahahha")
+const d = Promise.reject("ahahha")
 console.log(d);
 const r = Promise.resolve(new Promise((resolve,reject)=>{
-  resolve("嘻嘻")
+ reject("哈哈")
 }))
   console.log(r);
   
