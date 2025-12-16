@@ -33,75 +33,39 @@ function Promise(executor) {
 Promise.prototype.then = function (onResolve, onReject) {
   const self = this
   return new Promise((resolve, reject) => {
-    if (this.PromiseState === "fulfilled") {
-      try {
-        let result = onResolve(this.PromiseResult)
-        if (result instanceof Promise) {
-          result.then(result => {
+    function callFunction(type) {
+      {
+        try {
+          let result = type(self.PromiseResult)
+          if (result instanceof Promise) {
+            result.then(result => {
+              resolve(result)
+            }, reason => {
+              reject(reason)
+            })
+          }
+          else {
             resolve(result)
-          }, reason => {
-            reject(reason)
-          })
+          }
+        } catch (error) {
+          reject(error)
         }
-        else {
-          resolve(result)
-        }
-      } catch (error) {
-        reject(error)
       }
     }
+    if (this.PromiseState === "fulfilled") {
+      callFunction(onResolve)
+    }
     if (this.PromiseState === "rejected") {
-       try {
-        let result = onReject(this.PromiseResult)
-        if (result instanceof Promise) {
-          result.then(result => {
-            resolve(result)
-          }, reason => {
-            reject(reason)
-          })
-        }
-        else {
-          resolve(result)
-        }
-      } catch (error) {
-        reject(error)
-      }
+      callFunction(onReject)
+
     }
     if (this.PromiseState === "pending") {
       this.callBacks.push({
-        onResolve:function(){
-         try {
-           let result = onResolve(self.PromiseResult)
-          if(result instanceof Promise){
-            result.then(result=>{
-              resolve(result)
-            },reason=>{
-              reject(reason)
-            })
-          }
-          else{
-            resolve(result)
-          }
-         } catch (error) {
-          reject(error)
-         }
+        onResolve: function () {
+          callFunction(onResolve)
         }
-        ,onReject:function(){
-          try {
-           let result = onReject(self.PromiseResult)
-          if(result instanceof Promise){
-            result.then(result=>{
-              resolve(result)
-            },reason=>{
-              reject(reason)
-            })
-          }
-          else{
-            resolve(result)
-          }
-         } catch (error) {
-          reject(error)
-         }
+        , onReject: function () {
+          callFunction(onReject)
         }
       })
     }
