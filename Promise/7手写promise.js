@@ -95,5 +95,9 @@ Promise.resolve=function(data){
     }
   })
 }
-
+Promise.reject=function(data){
+  return new Promise((resolve,reject)=>{
+    reject(data)
+  })
+}
 //第二版箭头函数
