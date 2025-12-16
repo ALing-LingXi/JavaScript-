@@ -8,20 +8,24 @@
 </head>
 <body>
   <script >
-   const p = new Promise((resolve,reject)=>{
-   setTimeout(() => {
-    resolve("哈啊哈h")
-   }, 1000);
-   })
-let t = p.then(result=>{
-console.log(result);
-// return 123
-},reason=>{
-})
-console.log(t);
-console.log(p);
-
-   
+//    const p = new Promise((resolve,reject)=>{
+//    setTimeout(() => {
+//     resolve("哈啊哈h")
+//    }, 1000);
+//    })
+// let t = p.then(result=>{throw "error"}).then(result=>{},
+// ).then(undefined,reason=>{
+//   console.log(reason);
+// })
+// console.log(t);
+// console.log(p);
+const d = Promise.resolve("ahahha")
+console.log(d);
+const r = Promise.resolve(new Promise((resolve,reject)=>{
+  resolve("嘻嘻")
+}))
+  console.log(r);
+  
   </script>
   
 </body>
