@@ -62,19 +62,27 @@ Promise.prototype.then = function (onResolve, onReject) {
       }
     }
     if (this.PromiseState === "fulfilled") {
-      callFunction(onResolve)
+     setTimeout(()=>{
+       callFunction(onResolve)
+     })
     }
     if (this.PromiseState === "rejected") {
-      callFunction(onReject)
+     setTimeout(() => {
+       callFunction(onReject)
+     });
 
     }
     if (this.PromiseState === "pending") {
       this.callBacks.push({
         onResolve: function () {
-          callFunction(onResolve)
+          setTimeout(() => {
+            callFunction(onResolve)
+          });
         }
         , onReject: function () {
-          callFunction(onReject)
+          setTimeout(() => {
+            callFunction(onReject)
+          });
         }
       })
     }
