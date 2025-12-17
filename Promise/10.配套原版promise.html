@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./9.百分百独立手写Promise.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script >
+    // const p =new Promise((resolve,reject)=>{
+    //   resolve(new Promise((resolve,reject)=>{resolve("哈哈2")}))
+    // })
+    // console.log(p);
+  //   const p = new Promise((resolve,reject)=>{
+  //     resolve('哈啊哈')
+  //   })
+  //   console.log(p);
+  //  const t = p.then(result=>{return 123},reject=>{console.log("哈哈");
+  //  })
+  //   console.log(t);
+    const p = new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve("哈哈")
+      }, 1000);
+    })
+    p.then().then(r=>{
+      console.log(12233);
+    })
+    console.log(p);
+    
+  </script>
+  
+</body>
+</html>
